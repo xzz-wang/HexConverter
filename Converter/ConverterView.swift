@@ -94,13 +94,17 @@ struct ConverterView : View {
             
             if showBasePicker {
                 Divider()
-                Picker(selection: $inputBase, label: Text("Input options")) {
-                    Text("Binary").tag(BaseTypes.binary)
-                    Text("Octal").tag(BaseTypes.octal)
-                    Text("Decimal").tag(BaseTypes.decimal)
-                    Text("Hex").tag(BaseTypes.hex)
+                HStack {
+                    Spacer()
+                    Picker(selection: $inputBase, label: Text("Input options")) {
+                        Text("Binary").tag(BaseTypes.binary)
+                        Text("Octal").tag(BaseTypes.octal)
+                        Text("Decimal").tag(BaseTypes.decimal)
+                        Text("Hex").tag(BaseTypes.hex)
+                    }
+                    .animation(.basic(duration: 0.5, curve: .easeInOut))
+                    Spacer()
                 }
-                .animation(.basic(duration: 0.5, curve: .easeInOut))
             }
             
             // Divider
