@@ -81,16 +81,25 @@ struct ConverterView : View {
 
             
             // Second Row: Button and pop-up picker
-            Button(action: {
-                self.showBasePicker.toggle()
-            }) {
-                Text(showBasePicker ?"Close Input Base" : "Choose Input Base")
-                    .padding(.all, 7)
-            }
+            HStack {
+                
+                // Show picker button
+                Button(action: {
+                    self.showBasePicker.toggle()
+                }) {
+                    Text(showBasePicker ?"Close Input Base" : "Choose Input Base")
+                        .padding(.all, 6)
+                }
                 .background(showBasePicker ? Color.blue : Color.clear)
                 .accentColor(showBasePicker ? Color.white : Color.blue)
                 .cornerRadius(10)
                 .animation(.spring())
+                
+                Spacer()
+                
+                // Save Information Button
+                Button("Save result", action: {})
+            }
             
             if showBasePicker {
                 Divider()

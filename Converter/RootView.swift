@@ -11,13 +11,22 @@ import SwiftUI
 struct RootView : View {
     var body: some View {
         TabbedView{
+            
+            // First View in the tabbed view
             NavigationView {
                 ConverterView()
                     .navigationBarTitle(Text("Converter"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {}, label: {Text("?")}))
-                    .tabItem({Text("C")})
                     .tag(0)
             }
+            .tabItem({
+                VStack {
+                    Image(systemName: "c.circle")
+                    Text("Converter")
+                }
+            })
+            
+            
+            // Second View
         }
     }
 }
