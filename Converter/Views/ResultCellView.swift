@@ -15,20 +15,20 @@ struct ResultCellView : View {
     
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
-                    .font(.body)
-                
+            Button(action: { self.showDetail.toggle() }) {
+                HStack {
+                    Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
+                        .font(.body)
+                        .color(Color.primary)
+                    
                     Spacer()
-                
+                    
                     Text("in \(result.base.getName())")
-                        .font(.caption)
+                            .font(.caption)
+                            .color(Color.primary)
+                }
+                
             }
-                .animation(.basic(duration: 0.5, curve: .easeInOut))
-                .tapAction {
-                    self.showDetail.toggle()
-            }
-            
             
             if showDetail {
                 VStack(spacing: 0) {

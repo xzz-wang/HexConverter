@@ -16,6 +16,7 @@ struct ResultView : View {
     var body: some View {
         List (results) { result in
             ResultCellView(result: result)
+            .animation(.default)
         }
     }
 }
