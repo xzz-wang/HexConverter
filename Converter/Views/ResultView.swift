@@ -26,14 +26,3 @@ struct ResultView_Previews : PreviewProvider {
     }
 }
 #endif
-
-
-public class ConverterResult: Identifiable {
-    var value: Int
-    var base: HexConverter.BaseTypes
-    
-    init(of value: Int, in base: HexConverter.BaseTypes) {
-        self.value = value
-        self.base = base
-    }
-}
