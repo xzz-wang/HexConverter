@@ -11,6 +11,8 @@ import UIKit
 
 struct ConverterView : View {
     
+    typealias BaseTypes = HexConverter.BaseTypes
+    
     // State variables
     @State var inputText: String = ""
     @State var inputBase = BaseTypes.decimal
@@ -20,7 +22,7 @@ struct ConverterView : View {
     // Variable for detecting error
     var isError : Bool {
         get {
-            if  convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) != nil{
+            if  HexConverter.convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) != nil{
                 return false
             } else {
                 return true
@@ -31,7 +33,7 @@ struct ConverterView : View {
 
     var workingNumber: Int {
         get {
-            if let result = convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) {
+            if let result = HexConverter.convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) {
                 return result
             } else {
                 return 0
@@ -40,16 +42,16 @@ struct ConverterView : View {
     }
     
     var decimalOutput: String {get {
-            return convert(number: workingNumber, toBase: 10)!
+            return HexConverter.convert(number: workingNumber, toBase: 10)!
         }}
     var binaryOutput: String {get {
-            return convert(number: workingNumber, toBase: 2)!
+            return HexConverter.convert(number: workingNumber, toBase: 2)!
         }}
     var octalOutput: String {get {
-            return convert(number: workingNumber, toBase: 8)!
+            return HexConverter.convert(number: workingNumber, toBase: 8)!
         }}
     var hexOutput: String {get {
-            return convert(number: workingNumber, toBase: 16)!
+            return HexConverter.convert(number: workingNumber, toBase: 16)!
         }}
     
     
@@ -64,17 +66,17 @@ struct ConverterView : View {
             if isError {
                 Text(" Error!!")
                 .color(.red).bold()
-                .animation(.spring())
+                //.animation(.basic())
             } else {
                 Text(" \(inputBase.rawValue) Input:")
-                .animation(.spring())
+                //.animation(.basic)
             }
             
             
             TextField("Your input goes here", text: $inputText)
                 .padding(.all, 7)
                 .border(Color.gray, width: 1, cornerRadius: 10)
-                .animation(.spring())
+                //.animation(.basic())
 
             
             // Second Row: Button and pop-up picker
@@ -90,12 +92,14 @@ struct ConverterView : View {
                 .background(showBasePicker ? Color.blue : Color.clear)
                 .accentColor(showBasePicker ? Color.white : Color.blue)
                 .cornerRadius(10)
-                .animation(.spring())
+                //.animation(.basic())
                 
                 Spacer()
                 
                 // Save Information Button
+                // TODO: Add action to the button
                 Button("Save result", action: {})
+                //.animation(.basic())
             }
             
             if showBasePicker {
@@ -115,45 +119,25 @@ struct ConverterView : View {
             
             // Divider
             Divider()
-                .animation(.spring())
+                .animation(.basic())
             
             // For Output Rows
-            OutputRow(baseType: .binary, output: getOutputString(of: .binary))
-            OutputRow(baseType: .octal, output: getOutputString(of: .octal))
-            OutputRow(baseType: .decimal, output: getOutputString(of: .decimal))
-            OutputRow(baseType: .hex, output: getOutputString(of: .hex))
+            Group{
+                OutputRow(baseType: .binary, output: getOutputString(of: .binary))
+                OutputRow(baseType: .octal, output: getOutputString(of: .octal))
+                OutputRow(baseType: .decimal, output: getOutputString(of: .decimal))
+                OutputRow(baseType: .hex, output: getOutputString(of: .hex))
+            }
+            .padding(.top)
+            .animation(.basic())
 
             
             Spacer()
         }
         .padding()
+        .animation(.spring())
         
     }
-    
-    // MARK: - Most important type is defined here
-    
-    
-    enum BaseTypes: String, Hashable, CaseIterable {
-        case binary = "Binary"
-        case octal = "Octal"
-        case decimal = "Decimal"
-        case hex = "Hex"
-        
-        func getBaseNum() -> Int {
-            switch self {
-            case .binary:
-                return 2
-            case .octal:
-                return 8
-            case .decimal:
-                return 10
-            case .hex:
-                return 16
-            }
-        }
-    }
-    
-    
     
     func getOutputString(of base: BaseTypes) -> String {
         switch base {
@@ -185,112 +169,3 @@ struct ContentView_Previews : PreviewProvider {
 #endif
 
 
-
-
-// Function Name: convert()
-// Description: Taking an integer and a base as a input, find the integer's expansion in the given base.
-private func convert(number: Int, toBase base: Int) -> String? {
-    
-    let digitOfNumber = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F",]
-    
-    
-    // Error handling
-    // When base is out of range
-    if base > 16 || base < 2 {
-        return nil
-    }
-    
-    var result: String = ""
-    var numberBuffer = number
-    
-    var i = 0 // Loop counter
-    while numberBuffer != 0 {
-        let thisDigit = numberBuffer % base
-        
-        // Add a space for every 4
-        if i % 4 == 0 && i != 0 {
-            result = " " + result
-        }
-        
-        result = digitOfNumber[thisDigit] + result
-        i += 1
-        
-        numberBuffer = numberBuffer / base
-    }
-    
-    if result == "" {
-        return "0"
-    }
-    
-    return result
-}
-
-// Function name: convertFrom()
-// Description: get the decimal integer that is represented by the string in given base
-private func convertFrom(number:Substring, base: Int) -> Int! {
-    
-    // Local variables
-    var digitsFromRight: Int = 0
-    var workingSubstring: Substring = number
-    var result = 0
-    
-    /* Error Checking Error Conditions */
-    // Return nil if the input is problematic
-    if base < 2 {
-        print("The base is less than 2!")
-        return nil;
-    }
-    
-    // Generate the decimal
-    while ( workingSubstring.count != 0 ) {
-        
-        let workingChar = workingSubstring.last!        // Get the last character
-        let charValue: Int
-        
-        if workingChar.isHexDigit {
-            charValue = workingChar.hexDigitValue!
-        } else {
-            // Error: not a hexDigit
-            return nil
-        }
-        
-        // Check two error conditions: char not in [0, Z]
-        if charValue < base {
-            
-            // Noting is wrong
-            result += Int(Double(charValue) * pow(Double(base), Double(digitsFromRight)))
-            
-        } else {
-            // Error: The value is greater than base
-            return nil
-        }
-        // Remove the right most character
-        workingSubstring = workingSubstring.prefix(workingSubstring.count - 1)
-        // Increment the decimal d
-        digitsFromRight += 1
-    }
-    return result
-}
-
-struct OutputRow : View {
-    var baseType: ConverterView.BaseTypes
-    var output: String
-    @State var showAlert = false
-    
-    var body: some View {
-        return HStack{
-            Text("\(baseType.rawValue) Output:")
-            Spacer()
-            Text(output)
-        }
-        .padding(.top)
-        .tapAction {
-                UIPasteboard.general.string = self.output
-                self.showAlert = true
-        }
-        .presentation($showAlert){
-                Alert(title: Text("Result Copied!"), message: Text("The \(baseType.rawValue) result is copied to the clipboard!"), dismissButton: .default(Text("Got it!")))
-        }
-        .animation(.spring())
-    }
-}
