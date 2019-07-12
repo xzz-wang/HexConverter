@@ -15,9 +15,9 @@ struct RootView : View {
             // First View in the tabbed view
             NavigationView {
                 ConverterView()
-                    .navigationBarTitle(Text("Converter"), displayMode: .inline)
-                    .tag(0)
+                    .navigationBarTitle(Text("Converter"), displayMode: .automatic)
             }
+            .tag(0)
             .tabItem({
                 VStack {
                     Image(systemName: "c.circle")
@@ -29,6 +29,7 @@ struct RootView : View {
             // Second View
             NavigationView {
                 ResultView()
+                    .navigationBarTitle(Text("Saved Results"), displayMode: .automatic)
             }
             .tag(1)
                 .tabItem({
