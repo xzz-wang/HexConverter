@@ -20,7 +20,7 @@ struct ConverterView : View {
     // Variable for detecting error
     var isError : Bool {
         get {
-            if  convertFrom(number: Substring(inputText), base: baseNum) != nil{
+            if  convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) != nil{
                 return false
             } else {
                 return true
@@ -28,13 +28,10 @@ struct ConverterView : View {
         }
     }
     
-    // Variables for calculation of the Results
-    var baseNum: Int {get{
-            return BASE_NUM_DIC[inputBase]!
-        }}
+
     var workingNumber: Int {
         get {
-            if let result = convertFrom(number: Substring(inputText), base: baseNum) {
+            if let result = convertFrom(number: Substring(inputText), base: inputBase.getBaseNum()) {
                 return result
             } else {
                 return 0
@@ -56,7 +53,7 @@ struct ConverterView : View {
         }}
     
     
-    // View Body
+    // MARK: - View Body
     var body: some View {
         
         VStack (alignment: .leading) {
@@ -133,19 +130,30 @@ struct ConverterView : View {
         
     }
     
+    // MARK: - Most important type is defined here
+    
+    
     enum BaseTypes: String, Hashable, CaseIterable {
         case binary = "Binary"
         case octal = "Octal"
         case decimal = "Decimal"
         case hex = "Hex"
+        
+        func getBaseNum() -> Int {
+            switch self {
+            case .binary:
+                return 2
+            case .octal:
+                return 8
+            case .decimal:
+                return 10
+            case .hex:
+                return 16
+            }
+        }
     }
     
-    let ALL_BASES = [BaseTypes.binary, BaseTypes.octal, BaseTypes.decimal, BaseTypes.hex]
     
-    let BASE_NUM_DIC = [ BaseTypes.binary: 2,
-                       BaseTypes.octal : 8,
-                       BaseTypes.decimal: 10,
-                       BaseTypes.hex: 16]
     
     func getOutputString(of base: BaseTypes) -> String {
         switch base {
@@ -159,6 +167,8 @@ struct ConverterView : View {
             return octalOutput
         }
     }
+    
+
 }
 
 
