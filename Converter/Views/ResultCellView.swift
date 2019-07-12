@@ -24,7 +24,6 @@ struct ResultCellView : View {
                     Text("in \(result.base.getName())")
                         .font(.caption)
             }
-                .padding()
                 .animation(.basic(duration: 0.5, curve: .easeInOut))
                 .tapAction {
                     self.showDetail.toggle()
@@ -39,10 +38,9 @@ struct ResultCellView : View {
                     OutputRow(baseType: .hex, output: HexConverter.convert(number: result.value, toBase: 16)!)
                 }
                     .font(.footnote)
-                    .padding(.vertical, 5)
-                    .padding(.horizontal)
+                    .padding(.vertical)
                     .animation(.basic(duration: 0.5, curve: .easeInOut))
-                    .border(Color.gray)
+                    //.border(Color.gray)
             }
         }
     }
@@ -53,6 +51,7 @@ struct resultCellView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
             ResultCellView(result: ConverterResult(of: 64, in: .binary))
+            ResultCellView(result: ConverterResult(of: 64, in: .binary), showDetail: true)
         }
     }
 }

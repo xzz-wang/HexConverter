@@ -56,6 +56,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B08143E722D9053A003A153C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F8FC7FF622C4890500E6E134 /* RootView.swift */,
+				F8BA6AE822C3FD06007E1558 /* ConverterView.swift */,
+				B06C2E5722D8FA2100974654 /* ResultView.swift */,
+				B0AB8BBF22D862650051BA07 /* ResultCellView.swift */,
+				B0AB8BC122D86FC00051BA07 /* OutputRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F8BA6AD822C3FD06007E1558 = {
 			isa = PBXGroup;
 			children = (
@@ -78,12 +90,8 @@
 			children = (
 				F8BA6AE422C3FD06007E1558 /* AppDelegate.swift */,
 				F8BA6AE622C3FD06007E1558 /* SceneDelegate.swift */,
-				F8FC7FF622C4890500E6E134 /* RootView.swift */,
-				F8BA6AE822C3FD06007E1558 /* ConverterView.swift */,
+				B08143E722D9053A003A153C /* Views */,
 				B0AB8BC322D870950051BA07 /* HexConverter.swift */,
-				B0AB8BC122D86FC00051BA07 /* OutputRow.swift */,
-				B0AB8BBF22D862650051BA07 /* ResultCellView.swift */,
-				B06C2E5722D8FA2100974654 /* ResultView.swift */,
 				F8BA6AEA22C3FD09007E1558 /* Assets.xcassets */,
 				F8BA6AEF22C3FD09007E1558 /* LaunchScreen.storyboard */,
 				F8BA6AF222C3FD09007E1558 /* Info.plist */,
