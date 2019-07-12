@@ -51,7 +51,10 @@ struct ResultCellView : View {
 #if DEBUG
 struct resultCellView_Previews : PreviewProvider {
     static var previews: some View {
-        ResultCellView()
+        Group {
+            ResultCellView()
+            ResultCellView(showDetail: true)
+        }
     }
 }
 #endif
