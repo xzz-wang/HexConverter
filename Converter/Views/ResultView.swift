@@ -14,8 +14,9 @@ struct ResultView : View {
     @State var results = [ConverterResult(of: 64, in: .binary), ConverterResult(of: 64, in: .hex)]
     
     var body: some View {
-        List (self.results) { result in            ResultCellView(result: result)
-        }.animation(.basic(duration: 0.5, curve: .easeInOut))
+        List (results) { result in
+            ResultCellView(result: result)
+        }
     }
 }
 

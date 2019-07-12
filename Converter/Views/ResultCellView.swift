@@ -16,7 +16,7 @@ struct ResultCellView : View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(result.value)")
+                Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
                     .font(.body)
                 
                     Spacer()

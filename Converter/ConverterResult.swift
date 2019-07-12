@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 public class ConverterResult: Identifiable {
     var value: Int
