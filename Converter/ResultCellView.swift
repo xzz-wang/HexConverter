@@ -10,18 +10,18 @@ import SwiftUI
 
 struct ResultCellView : View {
     typealias BaseTypes = HexConverter.BaseTypes
-    @State var value = (64, BaseTypes.decimal)
-    @State var showDetail = true
+    @State var result: ConverterResult
+    @State var showDetail = false
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("\(value.0)")
+                Text("\(result.value)")
                     .font(.body)
                 
                     Spacer()
                 
-                    Text("in \(value.1.getName())")
+                    Text("in \(result.base.getName())")
                         .font(.caption)
             }
                 .padding()
@@ -33,10 +33,10 @@ struct ResultCellView : View {
             
             if showDetail {
                 VStack(spacing: 0) {
-                    OutputRow(baseType: .binary, output: HexConverter.convert(number: value.0, toBase: 2)!)
-                    OutputRow(baseType: .octal, output: HexConverter.convert(number: value.0, toBase: 8)!)
-                    OutputRow(baseType: .decimal, output: HexConverter.convert(number: value.0, toBase: 10)!)
-                    OutputRow(baseType: .hex, output: HexConverter.convert(number: value.0, toBase: 16)!)
+                    OutputRow(baseType: .binary, output: HexConverter.convert(number: result.value, toBase: 2)!)
+                    OutputRow(baseType: .octal, output: HexConverter.convert(number: result.value, toBase: 8)!)
+                    OutputRow(baseType: .decimal, output: HexConverter.convert(number: result.value, toBase: 10)!)
+                    OutputRow(baseType: .hex, output: HexConverter.convert(number: result.value, toBase: 16)!)
                 }
                     .font(.footnote)
                     .padding(.vertical, 5)
@@ -52,8 +52,7 @@ struct ResultCellView : View {
 struct resultCellView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ResultCellView()
-            ResultCellView(showDetail: true)
+            ResultCellView(result: ConverterResult(of: 64, in: .binary))
         }
     }
 }

@@ -27,6 +27,18 @@ struct RootView : View {
             
             
             // Second View
+            NavigationView {
+                ResultView()
+            }
+            .tag(1)
+                .tabItem({
+                    VStack {
+                        Image(systemName: "r.circle")
+                        Text("Saved Results")
+                    }
+                })
+
+
         }
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B06C2E5822D8FA2100974654 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06C2E5722D8FA2100974654 /* ResultView.swift */; };
 		B0AB8BC022D862650051BA07 /* ResultCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BBF22D862650051BA07 /* ResultCellView.swift */; };
 		B0AB8BC222D86FC00051BA07 /* OutputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BC122D86FC00051BA07 /* OutputRow.swift */; };
 		B0AB8BC422D870950051BA07 /* HexConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BC322D870950051BA07 /* HexConverter.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		B050C8FE22D7FB0400C937D4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B06C2E5722D8FA2100974654 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		B0AB8BBF22D862650051BA07 /* ResultCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCellView.swift; sourceTree = "<group>"; };
 		B0AB8BC122D86FC00051BA07 /* OutputRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputRow.swift; sourceTree = "<group>"; };
 		B0AB8BC322D870950051BA07 /* HexConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexConverter.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				B0AB8BC322D870950051BA07 /* HexConverter.swift */,
 				B0AB8BC122D86FC00051BA07 /* OutputRow.swift */,
 				B0AB8BBF22D862650051BA07 /* ResultCellView.swift */,
+				B06C2E5722D8FA2100974654 /* ResultView.swift */,
 				F8BA6AEA22C3FD09007E1558 /* Assets.xcassets */,
 				F8BA6AEF22C3FD09007E1558 /* LaunchScreen.storyboard */,
 				F8BA6AF222C3FD09007E1558 /* Info.plist */,
@@ -173,6 +176,7 @@
 				B0AB8BC222D86FC00051BA07 /* OutputRow.swift in Sources */,
 				F8BA6AE522C3FD06007E1558 /* AppDelegate.swift in Sources */,
 				B0AB8BC022D862650051BA07 /* ResultCellView.swift in Sources */,
+				B06C2E5822D8FA2100974654 /* ResultView.swift in Sources */,
 				F8BA6AE722C3FD06007E1558 /* SceneDelegate.swift in Sources */,
 				F8BA6AE922C3FD06007E1558 /* ConverterView.swift in Sources */,
 			);
