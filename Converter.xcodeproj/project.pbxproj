@@ -13,6 +13,7 @@
 		B0AB8BC022D862650051BA07 /* ResultCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BBF22D862650051BA07 /* ResultCellView.swift */; };
 		B0AB8BC222D86FC00051BA07 /* OutputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BC122D86FC00051BA07 /* OutputRow.swift */; };
 		B0AB8BC422D870950051BA07 /* HexConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BC322D870950051BA07 /* HexConverter.swift */; };
+		B0EDD23B22DA96F20069522D /* ResultDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EDD23A22DA96F20069522D /* ResultDetailView.swift */; };
 		F8BA6AE522C3FD06007E1558 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA6AE422C3FD06007E1558 /* AppDelegate.swift */; };
 		F8BA6AE722C3FD06007E1558 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA6AE622C3FD06007E1558 /* SceneDelegate.swift */; };
 		F8BA6AE922C3FD06007E1558 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA6AE822C3FD06007E1558 /* ConverterView.swift */; };
@@ -30,6 +31,7 @@
 		B0AB8BBF22D862650051BA07 /* ResultCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCellView.swift; sourceTree = "<group>"; };
 		B0AB8BC122D86FC00051BA07 /* OutputRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputRow.swift; sourceTree = "<group>"; };
 		B0AB8BC322D870950051BA07 /* HexConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexConverter.swift; sourceTree = "<group>"; };
+		B0EDD23A22DA96F20069522D /* ResultDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDetailView.swift; sourceTree = "<group>"; };
 		F8BA6AE122C3FD06007E1558 /* Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8BA6AE422C3FD06007E1558 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8BA6AE622C3FD06007E1558 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				F8BA6AE822C3FD06007E1558 /* ConverterView.swift */,
 				B06C2E5722D8FA2100974654 /* ResultView.swift */,
 				B0AB8BBF22D862650051BA07 /* ResultCellView.swift */,
+				B0EDD23A22DA96F20069522D /* ResultDetailView.swift */,
 				B0AB8BC122D86FC00051BA07 /* OutputRow.swift */,
 			);
 			path = Views;
@@ -195,6 +198,7 @@
 			files = (
 				B0AB8BC422D870950051BA07 /* HexConverter.swift in Sources */,
 				B0214A7022DA47C9004DF940 /* ConverterResult.swift in Sources */,
+				B0EDD23B22DA96F20069522D /* ResultDetailView.swift in Sources */,
 				F8FC7FF722C4890500E6E134 /* RootView.swift in Sources */,
 				B0AB8BC222D86FC00051BA07 /* OutputRow.swift in Sources */,
 				B08143E922D906A7003A153C /* ConverterResults.swift in Sources */,

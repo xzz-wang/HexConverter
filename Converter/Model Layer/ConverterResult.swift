@@ -30,12 +30,11 @@ public class ConverterResult: NSObject, NSCoding, Identifiable, BindableObject {
         self.createdTime = Date(timeIntervalSinceNow: 0)
     }
     
-    
     // MARK: NSCoding Methods
     public func encode(with coder: NSCoder) {
         coder.encode(value, forKey: PropertyKey.value)
         coder.encode(base.getName(), forKey: PropertyKey.base)
-        coder.encode(createdTime, forKey: PropertyKey.createdTime)
+        coder.encode(createdTime as NSDate, forKey: PropertyKey.createdTime)
     }
     
     public required init?(coder: NSCoder) {

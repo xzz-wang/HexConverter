@@ -56,7 +56,7 @@ public class ConverterResults: BindableObject {
     }
     
     
-    // Modifing the data
+    // MARK: -Modifing the data
     func addResult(_ result: ConverterResult) {
         results.append(result)
         saveChanges()
@@ -67,8 +67,19 @@ public class ConverterResults: BindableObject {
         saveChanges()
     }
     
+    func removeResult(_ targetResult: ConverterResult) -> Bool {
+        for i in 1...results.endIndex {
+            if results[i] === targetResult {
+                results.remove(at: i)
+                saveChanges()
+                return true
+            }
+        }
+        return false
+    }
     
-    // Perform saving changes to the disk and notify all the views.
+    
+    // MARK: -Perform saving changes to the disk and notify all the views.
     private func saveChanges() {
         // TODO: Save to disk
         let dataURL = docPath!.appendingPathComponent(DATA_FILE)

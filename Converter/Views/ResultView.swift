@@ -11,7 +11,7 @@ import SwiftUI
 struct ResultView : View {
     typealias BaseTypes = HexConverter.BaseTypes
     
-    @ObjectBinding var resultsObject: ConverterResults
+    @EnvironmentObject var resultsObject: ConverterResults
     
     var body: some View {
         NavigationView {
@@ -38,7 +38,8 @@ struct ResultView : View {
 #if DEBUG
 struct ResultView_Previews : PreviewProvider {
     static var previews: some View {
-        ResultView(resultsObject: ConverterResults(fromDisk: false))
+        ResultView()
+            .environmentObject(ConverterResults(fromDisk: false))
     }
 }
 #endif

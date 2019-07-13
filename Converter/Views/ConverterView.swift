@@ -19,7 +19,7 @@ struct ConverterView : View {
     @State var showBasePicker = false
     @State var showCopiedAlert = false
     
-    @ObjectBinding var savedResults: ConverterResults
+    @EnvironmentObject var savedResults: ConverterResults
     
     // Variable for detecting error
     var isError : Bool {
@@ -166,7 +166,8 @@ struct ConverterView : View {
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ConverterView(savedResults: ConverterResults(fromDisk: false))
+            ConverterView()
+                .environmentObject(ConverterResults(fromDisk: false))
         }
     }
 }
