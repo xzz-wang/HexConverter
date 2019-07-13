@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct RootView : View {
+    @ObjectBinding var savedResults: ConverterResults
+    
     var body: some View {
         TabbedView{
             
@@ -28,7 +30,7 @@ struct RootView : View {
             
             // Second View
             NavigationView {
-                ResultView()
+                ResultView(resultsObject: savedResults)
                     .navigationBarTitle(Text("Saved Results"), displayMode: .automatic)
             }
             .tag(1)
@@ -48,10 +50,8 @@ struct RootView : View {
 struct RootView_Previews : PreviewProvider {
     static var previews: some View {
         Group{
-            RootView()
+            RootView(savedResults: ConverterResults())
                 .previewDevice("iPhone XR")
-            RootView()
-                .previewDevice("iPhone 7")
         }
     }
 }

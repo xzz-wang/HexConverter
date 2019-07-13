@@ -9,6 +9,7 @@
 import Foundation
 import SwiftUI
 import os.log
+import Combine
 
 struct PropertyKey {
     static let value = "value"
@@ -22,9 +23,6 @@ public class ConverterResult: NSObject, NSCoding, Identifiable {
     
     var value: Int
     var base: HexConverter.BaseTypes
-    
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("meals")
     
     // Normal Initializer
     
@@ -52,4 +50,66 @@ public class ConverterResult: NSObject, NSCoding, Identifiable {
         self.base = base as! HexConverter.BaseTypes
     }
 
+}
+
+
+
+
+
+public class ConverterResults: BindableObject {
+    
+    public var didChange = PassthroughSubject<Void, Never>()
+    
+    // Document File path
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("converterResults")
+    
+    var results : [ConverterResult]
+    
+    init() {
+        results = []
+    }
+    
+    convenience init(fromDisk: Bool) {
+        self.init()
+        
+        if fromDisk {
+            if let nsData = NSData(contentsOf: ConverterResults.ArchiveURL) {
+                do {
+                    let data = Data(referencing:nsData)
+                    
+                    if let loadedResults = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Array<ConverterResult> {
+                        results = loadedResults
+                        didChange.send()
+                    }
+                } catch {
+                    print("Couldn't read file.")
+                }
+            }
+        }
+    }
+    
+    func addResult(_ result: ConverterResult) {
+        results.append(result)
+        saveChanges()
+    }
+    
+    //TODO: Remove items from the list
+    
+    private func saveChanges() {
+        // Save to disk
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+            try data.write(to: ConverterResults.ArchiveURL)
+            
+            os_log("Results successfully saved.", log: OSLog.default, type: .debug)
+        } catch {
+            os_log("Failed to save results...", log: OSLog.default, type: .error)
+        }
+        
+        // Notify Subscriber
+        didChange.send()
+    }
+    
+    
 }

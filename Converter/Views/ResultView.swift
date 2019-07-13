@@ -11,11 +11,11 @@ import SwiftUI
 struct ResultView : View {
     typealias BaseTypes = HexConverter.BaseTypes
     
-    @State var results = [ConverterResult(of: 64, in: .binary), ConverterResult(of: 64, in: .hex)]
+    @ObjectBinding var resultsObject: ConverterResults
     
     var body: some View {
         List{
-            ForEach(results) { result in
+            ForEach(resultsObject.results) { result in
                 ResultCellView(result: result)
                 .animation(.default)
             }
@@ -25,7 +25,7 @@ struct ResultView : View {
     
     func delete(at index: IndexSet) {
         if let first = index.first {
-            results.remove(at: first)
+            resultsObject.results.remove(at: first)
         }
     }
 }
@@ -33,7 +33,7 @@ struct ResultView : View {
 #if DEBUG
 struct ResultView_Previews : PreviewProvider {
     static var previews: some View {
-        ResultView()
+        ResultView(resultsObject: ConverterResults())
     }
 }
 #endif
