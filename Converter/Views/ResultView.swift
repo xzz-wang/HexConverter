@@ -14,9 +14,18 @@ struct ResultView : View {
     @State var results = [ConverterResult(of: 64, in: .binary), ConverterResult(of: 64, in: .hex)]
     
     var body: some View {
-        List (results) { result in
-            ResultCellView(result: result)
-            .animation(.default)
+        List{
+            ForEach(results) { result in
+                ResultCellView(result: result)
+                .animation(.default)
+            }
+            .onDelete(perform: delete)
+        }
+    }
+    
+    func delete(at index: IndexSet) {
+        if let first = index.first {
+            results.remove(at: first)
         }
     }
 }

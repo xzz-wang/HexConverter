@@ -14,21 +14,25 @@ struct ResultCellView : View {
     @State var showDetail = false
     
     var body: some View {
-        VStack(spacing: 0) {
-            Button(action: { self.showDetail.toggle() }) {
-                HStack {
-                    Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
-                        .font(.body)
-                        .color(Color.primary)
-                    
-                    Spacer()
-                    
-                    Text("in \(result.base.getName())")
-                            .font(.caption)
-                            .color(Color.primary)
-                }
+        
+        let tap = TapGesture().onEnded { _ in
+            self.showDetail.toggle()
+        }
+
+        return VStack(spacing: 0) {
+            HStack {
+                Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
+                    .font(.body)
+                    .color(Color.primary)
                 
+                Spacer()
+                
+                Text("in \(result.base.getName())")
+                        .font(.caption)
+                        .color(Color.primary)
             }
+                .gesture(tap)
+            
             
             if showDetail {
                 VStack(spacing: 0) {
