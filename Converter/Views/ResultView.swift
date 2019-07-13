@@ -25,7 +25,7 @@ struct ResultView : View {
     
     func delete(at index: IndexSet) {
         if let first = index.first {
-            resultsObject.results.remove(at: first)
+            resultsObject.removeResult(at: first)
         }
     }
 }

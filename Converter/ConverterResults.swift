@@ -99,10 +99,14 @@ public class ConverterResults: BindableObject {
         saveChanges()
     }
     
-    //TODO: Remove items from the list
+    func removeResult(at index: IndexSet.Element) {
+        results.remove(at: index)
+        
+        saveChanges()
+    }
     
     private func saveChanges() {
-        // Save to disk
+        // TODO: Save to disk
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: true)
             try data.write(to: ConverterResults.ArchiveURL)
