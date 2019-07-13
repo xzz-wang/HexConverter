@@ -16,7 +16,7 @@ struct RootView : View {
             
             // First View in the tabbed view
             NavigationView {
-                ConverterView()
+                ConverterView(savedResults: savedResults)
                     .navigationBarTitle(Text("Converter"), displayMode: .automatic)
             }
             .tag(0)

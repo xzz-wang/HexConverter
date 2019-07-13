@@ -19,6 +19,8 @@ struct ConverterView : View {
     @State var showBasePicker = false
     @State var showCopiedAlert = false
     
+    @ObjectBinding var savedResults: ConverterResults
+    
     // Variable for detecting error
     var isError : Bool {
         get {
@@ -98,7 +100,10 @@ struct ConverterView : View {
                 
                 // Save Information Button
                 // TODO: Add action to the button
-                Button("Save result", action: {})
+                Button("Save result", action: {
+                    let newResult = ConverterResult(of: self.workingNumber, in: self.inputBase)
+                    self.savedResults.addResult(newResult)
+                })
                 //.animation(.basic())
             }
             
@@ -161,8 +166,7 @@ struct ConverterView : View {
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
         Group {
-            ConverterView()
-            ConverterView(showBasePicker: true)
+            ConverterView(savedResults: ConverterResults(fromDisk: false))
         }
     }
 }

@@ -62,7 +62,7 @@ public class ConverterResults: BindableObject {
     
     // Document File path
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("converterResults")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Converter")
     
     var results : [ConverterResult]
     
@@ -73,6 +73,7 @@ public class ConverterResults: BindableObject {
     convenience init(fromDisk: Bool) {
         self.init()
         
+        // Loading data from the disk. Dont know if this will work yet.
         if fromDisk {
             if let nsData = NSData(contentsOf: ConverterResults.ArchiveURL) {
                 do {
@@ -86,6 +87,10 @@ public class ConverterResults: BindableObject {
                     print("Couldn't read file.")
                 }
             }
+        } else {
+            // Spill some test data
+            results = [ConverterResult(of: 64, in: .binary),
+                       ConverterResult(of: 128, in: .hex)]
         }
     }
     
@@ -99,9 +104,9 @@ public class ConverterResults: BindableObject {
     private func saveChanges() {
         // Save to disk
         do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: false)
+            let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: true)
             try data.write(to: ConverterResults.ArchiveURL)
-            
+
             os_log("Results successfully saved.", log: OSLog.default, type: .debug)
         } catch {
             os_log("Failed to save results...", log: OSLog.default, type: .error)
