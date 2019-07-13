@@ -14,12 +14,16 @@ struct ResultView : View {
     @ObjectBinding var resultsObject: ConverterResults
     
     var body: some View {
-        List{
-            ForEach(resultsObject.results) { result in
-                ResultCellView(result: result)
-                .animation(.default)
+        NavigationView {
+            List{
+                ForEach(resultsObject.results) { result in
+                    ResultCellView(result: result)
+                        .animation(.default)
+                }
+                .onDelete(perform: delete)
             }
-            .onDelete(perform: delete)
+            .navigationBarTitle(Text("Saved Results"), displayMode: .automatic)
+            .navigationBarItems(trailing: EditButton())
         }
     }
     
@@ -33,7 +37,7 @@ struct ResultView : View {
 #if DEBUG
 struct ResultView_Previews : PreviewProvider {
     static var previews: some View {
-        ResultView(resultsObject: ConverterResults())
+        ResultView(resultsObject: ConverterResults(fromDisk: false))
     }
 }
 #endif

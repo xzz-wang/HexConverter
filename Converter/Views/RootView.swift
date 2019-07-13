@@ -29,10 +29,7 @@ struct RootView : View {
             
             
             // Second View
-            NavigationView {
-                ResultView(resultsObject: savedResults)
-                    .navigationBarTitle(Text("Saved Results"), displayMode: .automatic)
-            }
+            ResultView(resultsObject: savedResults)
             .tag(1)
                 .tabItem({
                     VStack {
