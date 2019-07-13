@@ -16,6 +16,53 @@ struct PropertyKey {
     static let base = "base"
 }
 
+// MARK: - Results Class
+public class ConverterResults: BindableObject {
+    
+    public var didChange = PassthroughSubject<Void, Never>()
+    
+    var results : [ConverterResult]
+    
+    init() {
+        results = []
+    }
+    
+    convenience init(fromDisk: Bool) {
+        self.init()
+        
+        // Loading data from the disk. Dont know if this will work yet.
+        if fromDisk {
+            
+        } else {
+            // Spill some test data
+            results = [ConverterResult(of: 64, in: .binary),
+                       ConverterResult(of: 128, in: .hex)]
+        }
+    }
+    
+    func addResult(_ result: ConverterResult) {
+        results.append(result)
+        saveChanges()
+    }
+    
+    func removeResult(at index: IndexSet.Element) {
+        results.remove(at: index)
+        
+        saveChanges()
+    }
+    
+    private func saveChanges() {
+        // TODO: Save to disk
+        
+        // Notify Subscriber
+        didChange.send()
+    }
+    
+    
+}
+
+
+// MARK: - Result class
 public class ConverterResult: NSObject, NSCoding, Identifiable {
     
     
@@ -50,75 +97,4 @@ public class ConverterResult: NSObject, NSCoding, Identifiable {
         self.base = base as! HexConverter.BaseTypes
     }
 
-}
-
-
-
-
-
-public class ConverterResults: BindableObject {
-    
-    public var didChange = PassthroughSubject<Void, Never>()
-    
-    // Document File path
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("Converter")
-    
-    var results : [ConverterResult]
-    
-    init() {
-        results = []
-    }
-    
-    convenience init(fromDisk: Bool) {
-        self.init()
-        
-        // Loading data from the disk. Dont know if this will work yet.
-        if fromDisk {
-            if let nsData = NSData(contentsOf: ConverterResults.ArchiveURL) {
-                do {
-                    let data = Data(referencing:nsData)
-                    
-                    if let loadedResults = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? Array<ConverterResult> {
-                        results = loadedResults
-                        didChange.send()
-                    }
-                } catch {
-                    print("Couldn't read file.")
-                }
-            }
-        } else {
-            // Spill some test data
-            results = [ConverterResult(of: 64, in: .binary),
-                       ConverterResult(of: 128, in: .hex)]
-        }
-    }
-    
-    func addResult(_ result: ConverterResult) {
-        results.append(result)
-        saveChanges()
-    }
-    
-    func removeResult(at index: IndexSet.Element) {
-        results.remove(at: index)
-        
-        saveChanges()
-    }
-    
-    private func saveChanges() {
-        // TODO: Save to disk
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: results, requiringSecureCoding: true)
-            try data.write(to: ConverterResults.ArchiveURL)
-
-            os_log("Results successfully saved.", log: OSLog.default, type: .debug)
-        } catch {
-            os_log("Failed to save results...", log: OSLog.default, type: .error)
-        }
-        
-        // Notify Subscriber
-        didChange.send()
-    }
-    
-    
 }
