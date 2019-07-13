@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0214A7022DA47C9004DF940 /* ConverterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0214A6F22DA47C9004DF940 /* ConverterResult.swift */; };
 		B06C2E5822D8FA2100974654 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06C2E5722D8FA2100974654 /* ResultView.swift */; };
 		B08143E922D906A7003A153C /* ConverterResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08143E822D906A7003A153C /* ConverterResults.swift */; };
 		B0AB8BC022D862650051BA07 /* ResultCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB8BBF22D862650051BA07 /* ResultCellView.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B0214A6F22DA47C9004DF940 /* ConverterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterResult.swift; sourceTree = "<group>"; };
 		B050C8FE22D7FB0400C937D4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		B06C2E5722D8FA2100974654 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		B08143E822D906A7003A153C /* ConverterResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterResults.swift; sourceTree = "<group>"; };
@@ -50,6 +52,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B0214A7122DA4852004DF940 /* Model Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B0AB8BC322D870950051BA07 /* HexConverter.swift */,
+				B08143E822D906A7003A153C /* ConverterResults.swift */,
+				B0214A6F22DA47C9004DF940 /* ConverterResult.swift */,
+			);
+			path = "Model Layer";
+			sourceTree = "<group>";
+		};
 		B050C8FD22D7FB0400C937D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,8 +104,7 @@
 			children = (
 				F8BA6AE422C3FD06007E1558 /* AppDelegate.swift */,
 				F8BA6AE622C3FD06007E1558 /* SceneDelegate.swift */,
-				B0AB8BC322D870950051BA07 /* HexConverter.swift */,
-				B08143E822D906A7003A153C /* ConverterResults.swift */,
+				B0214A7122DA4852004DF940 /* Model Layer */,
 				B08143E722D9053A003A153C /* Views */,
 				F8BA6AEA22C3FD09007E1558 /* Assets.xcassets */,
 				F8BA6AEF22C3FD09007E1558 /* LaunchScreen.storyboard */,
@@ -183,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0AB8BC422D870950051BA07 /* HexConverter.swift in Sources */,
+				B0214A7022DA47C9004DF940 /* ConverterResult.swift in Sources */,
 				F8FC7FF722C4890500E6E134 /* RootView.swift in Sources */,
 				B0AB8BC222D86FC00051BA07 /* OutputRow.swift in Sources */,
 				B08143E922D906A7003A153C /* ConverterResults.swift in Sources */,
