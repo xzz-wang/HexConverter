@@ -30,20 +30,26 @@ public class ConverterResult: NSObject, NSCoding, Identifiable {
     // MARK: NSCoding Methods
     public func encode(with coder: NSCoder) {
         coder.encode(value, forKey: PropertyKey.value)
-        coder.encode(base, forKey: PropertyKey.base)
+        coder.encode(base.getName(), forKey: PropertyKey.base)
     }
     
     public required init?(coder: NSCoder) {
-        let value = coder.decodeObject(forKey: PropertyKey.value)
+        let value = coder.decodeInt64(forKey: PropertyKey.value)
         let base = coder.decodeObject(forKey: PropertyKey.base)
         
-        if value == nil || base == nil {
+        if base == nil {
             os_log("Can not load the properties", type: .debug)
             return nil
         }
         
-        self.value = value as! Int
-        self.base = base as! HexConverter.BaseTypes
+        self.value = Int(value)
+        let baseString = base as! String
+        self.base = HexConverter.BaseTypes(rawValue: baseString)!
     }
     
+}
+
+struct PropertyKey {
+    static let value = "value"
+    static let base = "base"
 }
