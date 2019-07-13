@@ -24,6 +24,7 @@ struct ResultView : View {
             }
             .navigationBarTitle(Text("Saved Results"), displayMode: .automatic)
             .navigationBarItems(trailing: EditButton())
+            .animation(.default)
         }
     }
     
