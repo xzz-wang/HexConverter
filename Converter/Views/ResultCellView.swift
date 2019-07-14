@@ -12,23 +12,20 @@ struct ResultCellView : View {
     typealias BaseTypes = HexConverter.BaseTypes
     
     @ObjectBinding var result: ConverterResult
-    @EnvironmentObject var resultsObject: ConverterResults
     
     var body: some View {
         
         return VStack(spacing: 0) {
-            NavigationLink(destination: ResultDetailView(result: result).environmentObject(resultsObject)) {
-                HStack {
-                    Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
-                        .font(.body)
+            HStack {
+                Text("\(HexConverter.convert(number: result.value, toBase: result.base.getBaseNum())!)")
+                    .font(.body)
+                    .color(Color.primary)
+                
+                    Spacer()
+                
+                    Text("in \(result.base.getName())")
+                        .font(.caption)
                         .color(Color.primary)
-                    
-                        Spacer()
-                    
-                        Text("in \(result.base.getName())")
-                            .font(.caption)
-                            .color(Color.primary)
-                    }
                 }
         }
     }

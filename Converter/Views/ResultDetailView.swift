@@ -12,9 +12,6 @@ struct ResultDetailView : View {
     
     @ObjectBinding var result: ConverterResult
     
-    @EnvironmentObject var resultsObject: ConverterResults
-    @State var showAlert = false
-    
     var body: some View {
         List {
             Section {
@@ -44,12 +41,8 @@ struct ResultDetailView : View {
 
         }
             .font(.body)
-            .animation(.default)
             .navigationBarTitle(String(result.value))
             .listStyle(.grouped)
-            .presentation($showAlert) {
-                Alert(title: Text("This is deleted"), message: nil, dismissButton: .default(Text("Ok...")))
-            }
     }
     
 }

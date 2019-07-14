@@ -17,8 +17,10 @@ struct ResultView : View {
         NavigationView {
             List{
                 ForEach(resultsObject.results) { result in
-                    ResultCellView(result: result)
-                        .animation(.default)
+                    NavigationLink(destination: ResultDetailView(result: result)) {
+                        ResultCellView(result: result)
+                            .animation(.default)
+                    }
                 }
                 .onDelete(perform: delete)
             }
